@@ -1,4 +1,4 @@
-const Filters = ({titles, onChange}) => {
+const Filters = ({titles, search, filterTitle, onSearchChange, onFilterChange, onReset}) => {
     return (
         <div className="filter-container">
 
@@ -9,7 +9,7 @@ const Filters = ({titles, onChange}) => {
 
             <div className="select-filter">
                 <label htmlFor="select">Select a title:</label>
-                <select id="select" onChange={onChange}>
+                <select id="select" value={filterTitle} onChange={(e) => onFilterChange(e.target.value)}>
                     <option value="">All</option>
                     {
                         titles.map(title => <option value={title}>{title}</option>)
@@ -20,7 +20,7 @@ const Filters = ({titles, onChange}) => {
             <button onClick={onReset}>Reset</button>
 
         </div>
-    )
-}
+    );
+};
 
-export default Filters
+export default Filters;
