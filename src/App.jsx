@@ -6,6 +6,7 @@ import './header.jsx'
 import './intro.jsx'
 import './cards.jsx'
 import './filters.jsx'
+import Filters from './filters.jsx'
    
 const App = () => {
     const cards = [
@@ -21,12 +22,38 @@ const App = () => {
         },
     ];
 
+    const [search, setSearch] = useState('');
+    const [filterTitle, setFilterTitle] = useState('');
+
+    const titles = [...new Set(cards.map(card => card.title))];
+
+    const filteredCards = cards.filter(card => {
+        const matchesSearch = card.title.toLowerCase().includes(search.toLowerCase());
+        const matchesFilter = filterTitle ? card.title === filterTitle : true; 
+        return matchesSearch && matchesFilter;
+    });
+
+    const resetFilters = () => {
+        setSearch('');
+        setFilterTitle('');
+    };
+
     return (
         <div className="App">
             <Header />
             <Introduction introText={getText()} />
+
+            <Filters
+                titles={titles}
+                search={search}
+                filterTitle={filterTitle}
+                onSearchChange={setSearch}
+                onFilterChange={setFilterTitle}
+                onReset={resetFilters}
+            />
+
             <section className="cards-container">
-                {cards.map((card, index) => (
+                {filteredCards.map((card, index) => (
                     <Card key={index} image={card.image} title={card.title} description={card.description} />
                 ))}
             </section>
