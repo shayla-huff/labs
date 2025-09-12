@@ -5,6 +5,7 @@ import './App.css'
 import '/header.jsx'
 import '/intro.jsx'
 import '/cards.jsx'
+import '/filters.jsx'
    
 const App = () => {
     const cards = [
