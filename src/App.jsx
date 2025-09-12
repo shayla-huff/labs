@@ -2,10 +2,9 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import './header.jsx'
-import './intro.jsx'
-import './cards.jsx'
-import './filters.jsx'
+import Header from './header.jsx';
+import Introduction, { getText } from './intro.jsx';
+import Card from './cards.jsx';
 import Filters from './filters.jsx'
    
 const App = () => {

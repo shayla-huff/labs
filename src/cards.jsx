@@ -5,3 +5,5 @@ const Card = ({ image, title, description }) => (
         <p>{description}</p>
     </div>
 );
+
+export default Card;
