@@ -12,9 +12,9 @@ const Filters = ({titles, search, filterTitle, onSearchChange, onFilterChange, o
             <div className={styles.selectFilter}>
                 <label htmlFor="select">Select a title:</label>
                 <select id="select" value={filterTitle} onChange={(e) => onFilterChange(e.target.value)}>
-                    <option value="">All</option>
+                    <option value="">All</option> 
                     {
-                        titles.map(title => <option value={title}>{title}</option>)
+                        titles.map(title => <option key={title }value={title}>{title}</option>)
                     }
                 </select>
             </div>

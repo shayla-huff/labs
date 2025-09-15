@@ -24,6 +24,9 @@ const App = () => {
     const [search, setSearch] = useState('');
     const [filterTitle, setFilterTitle] = useState('');
 
+    const [darkMode, setDarkMode] = useState(false);
+    const toggleMode = () => setDarkMode(prev => !prev);
+
     const titles = [...new Set(cards.map(card => card.title))];
 
     const filteredCards = cards.filter(card => {
@@ -38,9 +41,9 @@ const App = () => {
     };
 
     return (
-        <div className="App">
-            <Header />
-            <Introduction introText={getText()} />
+        <div className={darkMode ? styles.appDark : styles.appLight}>
+        <Header onToggleMode={toggleMode} darkMode={darkMode} />
+        <Introduction introText={getText()} />
 
             <Filters
                 titles={titles}
@@ -49,20 +52,9 @@ const App = () => {
                 onSearchChange={setSearch}
                 onFilterChange={setFilterTitle}
                 onReset={resetFilters}
+                darkMode={darkMode}
             />
 
-            <section className="cards-container">
-                {filteredCards.map((card, index) => (
-                    <Card key={index} image={card.image} title={card.title} description={card.description} />
-                ))}
-            </section>
-        </div>
-    );
-
-    return (
-        <div className={darkMode ? styles.appDark : styles.appLight}>
-            <Header onToggleMode={toggleMode} darkMode={darkMode} />
-            <Introduction introText={getText()} />
             {filteredCards.length > 0 ? (
                 <section className={styles.cardsContainer}>
                     {filteredCards.map((card, index) => (
@@ -70,10 +62,10 @@ const App = () => {
                     ))}
                 </section> 
             ) : (
-                <p>No results found</p>
+                <p className={styles.noResults}>No results found</p>
             )}
         </div>
-    )
+    );
 };
 
 export default App;
