@@ -1,6 +1,6 @@
 const Filters = ({titles, search, filterTitle, onSearchChange, onFilterChange, onReset, darkMode}) => {
     return (
-        <div className={`${StyleSheet.filterContainer} ${darkMode ? styles.dark : ''}`}>
+        <div className={`${styles.filterContainer} ${darkMode ? styles.dark : ''}`}>
 
             <div className={styles.searchBox}>
                 <label htmlFor="search">Search by name:</label>
