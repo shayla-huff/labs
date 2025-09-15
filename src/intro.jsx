@@ -1,5 +1,7 @@
+import styles from './css/intro.module.css';
+
 const Introduction = ({ introText }) => (
-    <section className="introduction">
+    <section className={styles.introduction}>
         <p>{introText}</p>
     </section>
 )

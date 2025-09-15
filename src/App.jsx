@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css'
+import './css/App.css'
 import Header from './header.jsx';
 import Introduction, { getText } from './intro.jsx';
 import Card from './cards.jsx';
@@ -58,6 +58,22 @@ const App = () => {
             </section>
         </div>
     );
+
+    return (
+        <div className={darkMode ? styles.appDark : styles.appLight}>
+            <Header onToggleMode={toggleMode} darkMode={darkMode} />
+            <Introduction introText={getText()} />
+            {filteredCards.length > 0 ? (
+                <section className={styles.cardsContainer}>
+                    {filteredCards.map((card, index) => (
+                        <Card key={index} image={card.image} title={card.title} description={card.description} />
+                    ))}
+                </section> 
+            ) : (
+                <p>No results found</p>
+            )}
+        </div>
+    )
 };
 
 export default App;

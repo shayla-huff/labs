@@ -1,13 +1,13 @@
-const Filters = ({titles, search, filterTitle, onSearchChange, onFilterChange, onReset}) => {
+const Filters = ({titles, search, filterTitle, onSearchChange, onFilterChange, onReset, darkMode}) => {
     return (
-        <div className="filter-container">
+        <div className={`${StyleSheet.filterContainer} ${darkMode ? styles.dark : ''}`}>
 
-            <div className="searchBox">
+            <div className={styles.searchBox}>
                 <label htmlFor="search">Search by name:</label>
                 <input id="search" type="text" value={search} onChange={(e) => onSearchChange(e.target.value)} placeholder="Type a name!" />
             </div>
 
-            <div className="select-filter">
+            <div className={styles.selectFilter}>
                 <label htmlFor="select">Select a title:</label>
                 <select id="select" value={filterTitle} onChange={(e) => onFilterChange(e.target.value)}>
                     <option value="">All</option>
@@ -17,8 +17,7 @@ const Filters = ({titles, search, filterTitle, onSearchChange, onFilterChange, o
                 </select>
             </div>
 
-            <button onClick={onReset}>Reset</button>
-
+            <button className={styles.resetButton} onClick={onReset}>Reset</button>
         </div>
     );
 };
