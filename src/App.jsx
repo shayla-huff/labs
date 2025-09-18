@@ -1,14 +1,13 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import styles from './css/app.module.css'
 import Header from './header.jsx';
 import Introduction, { getText } from './intro.jsx';
 import Card from './cards.jsx';
 import Filters from './filters.jsx'
+import ProfileForm from './profileform.jsx';
    
 const App = () => {
-    const cards = [
+    const [cards, setCards] = useState([
         {
             image: "https://media.licdn.com/dms/image/v2/D4E03AQGYxXdMqX9q_A/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1721353888105?e=1759968000&v=beta&t=TNr6xOrpWnj30DyEKxW9xT66k0C7yACize-JoztNbIg",
             title: "Shayla Hufford",
@@ -19,7 +18,7 @@ const App = () => {
             title: "Drew Barrymore",
             description: "Actress",
         },
-    ];
+    ]);
 
     const [search, setSearch] = useState('');
     const [filterTitle, setFilterTitle] = useState('');
@@ -40,10 +39,20 @@ const App = () => {
         setFilterTitle('');
     };
 
+    const handleAddProfile = (newProfile) => {
+        setCards(prev => [...prev, 
+            {
+                image: newProfile.image,
+                title: newProfile.title,
+                description: `${newProfile.title} - ${newProfile.bio}`,
+            }
+        ]);
+    };
+
     return (
         <div className={darkMode ? styles.appDark : styles.appLight}>
-        <Header onToggleMode={toggleMode} darkMode={darkMode} />
-        <Introduction introText={getText()} />
+            <Header onToggleMode={toggleMode} darkMode={darkMode} />
+            <Introduction introText={getText()} />
 
             <Filters
                 titles={titles}
@@ -54,6 +63,8 @@ const App = () => {
                 onReset={resetFilters}
                 darkMode={darkMode}
             />
+
+            <ProfileForm onAddProfile={handleAddProfile} darkMode={darkMode} />
 
             {filteredCards.length > 0 ? (
                 <section className={styles.cardsContainer}>

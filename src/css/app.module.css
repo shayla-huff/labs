@@ -3,3 +3,17 @@
   text-align: center;
   padding: 20px;
 }
+
+.profile-form.dark {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.profile-form.dark input,
+.profile-form.dark textarea {
+  background-color: #555;
+  color: white;
+  border: 1px solid #777;
+}
