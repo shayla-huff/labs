@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from './css/profile.module.css';
+import styles from './css/profile.module.css'
 
 const ProfileForm = ({ onAddProfile, darkMode }) => {
     // form field state

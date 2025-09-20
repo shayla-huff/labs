@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import styles from './css/app.module.css'
+import { useState } from 'react';
+import styles from './css/app.module.css';
 import Header from './header.jsx';
 import Introduction, { getText } from './intro.jsx';
 import Card from './cards.jsx';

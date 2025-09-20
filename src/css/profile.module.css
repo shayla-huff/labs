@@ -4,7 +4,12 @@
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #f9f9f9;
+    background: #fff;
+}
+
+.profileForm.dark {
+    background: #2a2a2a;
+    color: #eee;
 }
 
 .profileForm h2 {
@@ -21,5 +26,41 @@
     display: block;
     margin-bottom: 0.5rem;
     font-weight: bold;
+}
+
+.profileForm input,
+.profileForm textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.profileForm button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.profileForm button:hover {
+    background-color: #0056b3;
+}
+
+.successMessage {
+    color: green;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.errorMessage {
+    color: red;
+    text-align: center;
+    margin-top: 1rem;
 }
 
