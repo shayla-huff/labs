@@ -1,10 +1,10 @@
-import { useState } from 'react';
 import styles from './css/app.module.css';
 import Header from './header.jsx';
 import Introduction, { getText } from './intro.jsx';
 import Card from './cards.jsx';
 import Filters from './filters.jsx'
 import ProfileForm from './profileform.jsx';
+import { useState, useEffect } from 'react';
    
 const App = () => {
     const [cards, setCards] = useState([
@@ -26,7 +26,7 @@ const App = () => {
     const [darkMode, setDarkMode] = useState(false);
     const toggleMode = () => setDarkMode(prev => !prev);
 
-    const titles = [...new Set(cards.map(card => card.title))];
+    const [titles, setTitles] = useState([]);
 
     const filteredCards = cards.filter(card => {
         const matchesSearch = card.title.toLowerCase().includes(search.toLowerCase());
@@ -48,6 +48,34 @@ const App = () => {
             }
         ]);
     };
+
+    useEffect(() => {
+        const fetchTitles = async () => {
+            try {
+                const response = await fetch ("https://web.ics.purdue.edu/~zong6/profile-app/get-titles.php");
+                const data = await response.json();
+                setTitles(data);
+            } catch (error) {
+                console.error("Error fetching titles: ", error);
+            }
+        };
+
+        fetchTitles();
+    }, []);
+
+    useEffect(() => {
+        const fetchProfiles = async () => {
+            try {
+                const response = await fetch ("https://web.ics.purdue.edu/~zong6/profile-app/fetch-data.php");
+                const data = await response.json();
+                setCards(data);
+            } catch (error) {
+                console.error("Error fetching profiles: ", error);
+            }
+        };
+
+        fetchProfiles();
+    }, []);
 
     return (
         <div className={darkMode ? styles.appDark : styles.appLight}>
