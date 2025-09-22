@@ -38,7 +38,7 @@ const App = () => {
             try {
                 const response = await fetch ("https://web.ics.purdue.edu/~zong6/profile-app/get-titles.php");
                 const data = await response.json();
-                setTitles(data);
+                setTitles(data.titles);
             } catch (error) {
                 console.error("Error fetching titles: ", error);
             }
@@ -66,7 +66,7 @@ const App = () => {
             try {
                 const response = await fetch (`https://web.ics.purdue.edu/~zong6/profile-app/fetch-data-with-filter.php?title=${filterTitle}&name=${search}&page=${page}&limit=${limit}`);
                 const data = await response.json();
-                setCards(data.profiles || []);
+                setCards(data.profiles);
             } catch (error) {
                 console.error("Error fetching filtered profiles: ", error);
             }
