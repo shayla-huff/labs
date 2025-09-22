@@ -99,9 +99,9 @@ const App = () => {
                     {cards.map((card, index) => (
                         <Card 
                             key={index} 
-                            image={card.image} 
+                            image={card.image_url} 
                             title={card.title} 
-                            description={card.description}
+                            description={card.bio}
                         />
                     ))}
                 </section> 
