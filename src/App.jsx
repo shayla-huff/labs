@@ -1,114 +1,34 @@
-import styles from './css/app.module.css';
-import Header from './header.jsx';
-import Introduction, { getText } from './intro.jsx';
-import Card from './cards.jsx';
-import Filters from './filters.jsx'
-import ProfileForm from './profileform.jsx';
-import { useState, useEffect } from 'react';
-   
+import { HashRouter, Routes, Route, Link } from "react-router-dom";
+import { useState } from "react";
+import Home from "./pages/home";
+import AddProfile from "./pages/addprofile";
+import About from "./pages/about";
+import OtherProfiles from "./pages/otherprof";
+import NotFound from "./pages/notfound";
+import Header from "./components/header";
+
 const App = () => {
     const [cards, setCards] = useState([]);
-    const [titles, setTitles] = useState([]);
-    const [search, setSearch] = useState('');
-    const [filterTitle, setFilterTitle] = useState('');
-    const [darkMode, setDarkMode] = useState(false);
-
-    const [page, setPage] = useState(1);
-    const limit = 10;
-
-    const toggleMode = () => setDarkMode(prev => !prev);
-
-    const resetFilters = () => {
-        setSearch('');
-        setFilterTitle('');
-    };
-
-    const handleAddProfile = (newProfile) => {
-        setCards(prev => [...prev, 
-            {
-                image: newProfile.image,
-                title: newProfile.title,
-                description: `${newProfile.title} - ${newProfile.bio}`,
-            }
-        ]);
-    };
-
-    useEffect(() => {
-        const fetchTitles = async () => {
-            try {
-                const response = await fetch ("https://web.ics.purdue.edu/~zong6/profile-app/get-titles.php");
-                const data = await response.json();
-                setTitles(data.titles);
-            } catch (error) {
-                console.error("Error fetching titles: ", error);
-            }
-        };
-
-        fetchTitles();
-    }, []);
-
-    useEffect(() => {
-        const fetchProfiles = async () => {
-            try {
-                const response = await fetch ("https://web.ics.purdue.edu/~zong6/profile-app/fetch-data.php");
-                const data = await response.json();
-                setCards(data);
-            } catch (error) {
-                console.error("Error fetching profiles: ", error);
-            }
-        };
-
-        fetchProfiles();
-    }, []);
-
-    useEffect(() => {
-        const fetchFilteredProfiles = async () => {
-            try {
-                const response = await fetch (`https://web.ics.purdue.edu/~zong6/profile-app/fetch-data-with-filter.php?title=${filterTitle}&name=${search}&page=${page}&limit=${limit}`);
-                const data = await response.json();
-                setCards(data.profiles);
-            } catch (error) {
-                console.error("Error fetching filtered profiles: ", error);
-            }
-        };
-
-        if (filterTitle || search) {
-            fetchFilteredProfiles();
-        }
-    }, [filterTitle, search, page]);
 
     return (
-        <div className={darkMode ? styles.appDark : styles.appLight}>
-            <Header onToggleMode={toggleMode} darkMode={darkMode} />
-            <Introduction introText={getText()} />
+        <HashRouter>
+            <Header />
 
-            <Filters
-                titles={titles}
-                search={search}
-                filterTitle={filterTitle}
-                onSearchChange={setSearch}
-                onFilterChange={setFilterTitle}
-                onReset={resetFilters}
-                darkMode={darkMode}
-            />
+            <nav>
+                <Link to="/">Home</Link> |{" "}
+                <Link to="/addprofile">Add Profile</Link> |{" "}
+                <Link to="/about">About</Link> |{" "}
+                <Link to="/otherprofiles">Other Profiles</Link>
+            </nav>
 
-            <ProfileForm onAddProfile={handleAddProfile} darkMode={darkMode} />
-
-            {cards.length > 0 ? (
-                <section className={styles.cardsContainer}>
-                    {cards.map((card, index) => (
-                        <Card 
-                            key={index} 
-                            image={card.image_url} 
-                            title={card.title} 
-                            description={card.bio}
-                        />
-                    ))}
-                </section> 
-            ) : (
-                <p className={styles.noResults}>No results found</p>
-            )}
-        </div>
+            <Routes>
+                <Route path="/" element={<Home cards={cards} setCards={setCards} />} />
+                <Route path="/addprofile" element={<AddProfile setCards={setCards}/>} />
+                <Route path="/about" element={<About />} />
+                <Route path="/otherprofiles" element={<OtherProfiles />} />
+                <Route path="*" element={<NotFound />} />
+            </Routes>
+        </HashRouter>
     );
 };
 

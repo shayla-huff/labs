@@ -1,4 +1,4 @@
-import styles from './css/filter.module.css';
+import styles from '../css/filter.module.css';
 
 const Filters = ({titles, search, filterTitle, onSearchChange, onFilterChange, onReset, darkMode}) => {
     return (
