@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import { useState } from "react";
 import Home from "./pages/home";
 import AddProfile from "./pages/addprofile";
@@ -11,7 +11,7 @@ const App = () => {
     const [cards, setCards] = useState([]);
 
     return (
-        <HashRouter>
+        <>
             <Header />
 
             <nav>
@@ -28,7 +28,7 @@ const App = () => {
                 <Route path="/otherprofiles" element={<OtherProfiles />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
-        </HashRouter>
+        </>
     );
 };
 
