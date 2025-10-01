@@ -6,7 +6,6 @@ const ProfileForm = ({ onAddProfile, darkMode }) => {
         name: "", email: "", title: "", bio: "", image: "",
     });
     const [errors, setErrors] = useState({});
-    const [success, setSuccess] = useState("");
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -36,7 +35,6 @@ const ProfileForm = ({ onAddProfile, darkMode }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setSuccess("");
 
         const newErrors = validateForm();
         if (Object.keys(newErrors).length > 0) {
@@ -52,7 +50,6 @@ const ProfileForm = ({ onAddProfile, darkMode }) => {
 
         setFormData({ name: "", email: "", title: "", bio: "", image: "" });
         setErrors({});
-        setSuccess("Profile added successfully!");
     };
 
     return (

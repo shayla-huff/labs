@@ -7,6 +7,9 @@ import OtherProfiles from "./pages/otherprof";
 import NotFound from "./pages/notfound";
 import Header from "./components/header";
 
+import FetchedProfiles from "./pages/fetchedprofiles";
+import ProfileDetails from "./components/profiledetails";
+
 const App = () => {
     const [cards, setCards] = useState([]);
 
@@ -19,6 +22,7 @@ const App = () => {
                 <Link to="/addprofile">Add Profile</Link> |{" "}
                 <Link to="/about">About</Link> |{" "}
                 <Link to="/otherprofiles">Other Profiles</Link>
+                <Link to="/fetchedprofiles">Fetched Profiles</Link>
             </nav>
 
             <Routes>
@@ -26,7 +30,12 @@ const App = () => {
                 <Route path="/addprofile" element={<AddProfile setCards={setCards}/>} />
                 <Route path="/about" element={<About />} />
                 <Route path="/otherprofiles" element={<OtherProfiles />} />
+                <Route path="/fetched-profiles" element={<FetchedProfiles />}>
+                    <Route path="profile/:id" element={<ProfileDetails />} /> 
+                </Route>
+
                 <Route path="*" element={<NotFound />} />
+
             </Routes>
         </>
     );
