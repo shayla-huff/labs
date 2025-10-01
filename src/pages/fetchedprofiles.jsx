@@ -10,7 +10,7 @@ const FetchedProfiles = () => {
     useEffect(() => {
         const fetchProfiles = async () => {
             try {
-                const response = await fetch("https://web.ics.purdue.edu/~zong6/profile-app/fetch-data-with-id.php?id=${id}");
+                const response = await fetch("https://web.ics.purdue.edu/~zong6/profile-app/fetch-data.php");
                 if (!response.ok) throw new Error("Failed to fetch profiles");
 
                 const data = await response.json();
@@ -50,11 +50,11 @@ const FetchedProfiles = () => {
                         <h3 className={styles.profileTitle}>{profile.title}</h3>
                         <p className={styles.profileDescription}>{profile.description}</p>
 
-                        <Link to={`/profile/${profile.id}`}>View Details</Link>
+                        <Link to={`profile/${profile.id}`}>View Details</Link>
                     </div>
                 ))}
             </div>
-
+            <Outlet />
         </div>
     );
 };

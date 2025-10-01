@@ -31,12 +31,8 @@ const ProfileDetails = () => {
     if (!profile) return <p>No profile found</p>;
 
     return (
-        <div className={styles.profileDetails}>
+        <div className={styles.profileCard}>
             <h2>{profile.name}</h2>
-            <img 
-                src={profile.image} 
-                alt={profile.name} 
-            />
             <p><strong>Email:</strong> {profile.email}</p>
             <p><strong>Title:</strong> {profile.title}</p>
             <p><strong>Bio:</strong> {profile.bio}</p>
