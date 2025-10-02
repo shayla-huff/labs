@@ -1,7 +1,7 @@
 import styles from '../css/navbar.module.css';
 import { Link } from 'react-router-dom';
 
-const Header = ({onToggleMode, darkMode}) => {
+const Header = ({ toggleMode, darkMode }) => {
     return (
         <header className={darkMode ? styles.darkHeader : styles.lightHeader}>
             <nav className={styles.navbar}>
@@ -12,7 +12,7 @@ const Header = ({onToggleMode, darkMode}) => {
                 </ul>
             </nav>
 
-            <button className={styles.modeButton} onClick={onToggleMode}>
+            <button className={styles.modeButton} onClick={toggleMode}>
                 {darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
             </button>
         </header>

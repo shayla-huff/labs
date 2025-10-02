@@ -14,9 +14,11 @@ const App = () => {
     const [cards, setCards] = useState([]); //keeps track of profiles added
     const [darkMode, setDarkMode] = useState(false); // state for dark mode
 
+    const toggleMode = () => setDarkMode(!darkMode);
+
     return (
         <>
-            <Header darkmode={darkMode} onToggleMode={toggleMode} />
+            <Header darkmode={darkMode} toggleMode={toggleMode} />
 
             <nav>
                 <Link to="/">Home</Link> |{" "}

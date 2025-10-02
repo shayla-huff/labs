@@ -1,4 +1,4 @@
-export const FetchTitles = async () => {
+export const fetchTitles = async () => {
     try {
         const response = await fetch('https://https://web.ics.purdue.edu/~zong6/profile-app/get-titles.php.example.com/data');
         if (!response.ok) throw new Error('Failed to fetch titles');
