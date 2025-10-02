@@ -4,18 +4,17 @@ import { Link } from 'react-router-dom';
 const Header = ({onToggleMode, darkMode}) => {
     return (
         <header className={darkMode ? styles.darkHeader : styles.lightHeader}>
-        <nav className={styles.navbar}>
-            <ul>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/about">About</Link></li>
-                <li><Link to="/otherprof">Profiles</Link></li>
-            </ul>
-        </nav>
+            <nav className={styles.navbar}>
+                <ul>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/about">About</Link></li>
+                    <li><Link to="/otherprofiles">Profiles</Link></li>
+                </ul>
+            </nav>
 
-        <button className={styles.modeButton} onClick={onToggleMode}>
-            {darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-        </button>
-
+            <button className={styles.modeButton} onClick={onToggleMode}>
+                {darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            </button>
         </header>
     );
 };

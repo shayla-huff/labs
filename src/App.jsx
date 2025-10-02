@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom"; 
 import { useState } from "react";
 import Home from "./pages/home";
 import AddProfile from "./pages/addprofile";
@@ -11,26 +11,31 @@ import FetchedProfiles from "./pages/fetchedprofiles";
 import ProfileDetails from "./components/profiledetails";
 
 const App = () => {
-    const [cards, setCards] = useState([]);
+    const [cards, setCards] = useState([]); //keeps track of profiles added
+    const [darkMode, setDarkMode] = useState(false); // state for dark mode
 
     return (
         <>
-            <Header />
+            <Header darkmode={darkMode} onToggleMode={toggleMode} />
 
             <nav>
                 <Link to="/">Home</Link> |{" "}
                 <Link to="/addprofile">Add Profile</Link> |{" "}
                 <Link to="/about">About</Link> |{" "}
-                <Link to="/otherprofiles">Other Profiles</Link>
-                <Link to="/fetchedprofiles">Fetched Profiles</Link>
+                <Link to="/otherprofiles">Other Profiles</Link> |{" "}
+                <Link to="/fetchedprofiles">Fetched Profiles</Link> |{" "}
             </nav>
 
             <Routes>
-                <Route path="/" element={<Home cards={cards} setCards={setCards} />} />
-                <Route path="/addprofile" element={<AddProfile setCards={setCards}/>} />
+                <Route 
+                    path="/"
+                    element={<Home cards={cards} setCards={setCards} darkmode={darkMode} />} />
+                <Route 
+                    path="/addprofile" 
+                    element={<AddProfile setCards={setCards} darkmode={darkMode} />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/otherprofiles" element={<OtherProfiles />} />
-                <Route path="/fetched-profiles" element={<FetchedProfiles />}>
+                <Route path="/fetchedprofiles" element={<FetchedProfiles />}>
                     <Route path="profile/:id" element={<ProfileDetails />} /> 
                 </Route>
 

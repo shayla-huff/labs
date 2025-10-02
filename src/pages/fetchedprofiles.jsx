@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom"; 
+import { fetchAllProfiles } from "../components/fetchdata.jsx";
 import styles from "../css/profile.module.css";
 
 const FetchedProfiles = () => {
@@ -31,6 +32,11 @@ const FetchedProfiles = () => {
         };
 
         fetchProfiles();
+    }, []);
+
+    useEffect(() => {
+        const getProfiles = async () => setProfiles(await fetchAllProfiles());
+        getProfiles();
     }, []);
 
     if (loading) return <div>Loading...</div>;
