@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
-import { ModeContext } from './contexts/ModeContext';
-import { ProfilesContext } from './contexts/ProfilesContext';
+import { ModeContext } from '../contexts/ModeContext';
+import { ProfilesContext } from '../contexts/ProfilesContext';
 import { fetchTitles, fetchProfiles } from "../components/fetchdata.jsx";
 import Intro, { getText } from '../components/intro';
 import Cards from '../components/cards.jsx';

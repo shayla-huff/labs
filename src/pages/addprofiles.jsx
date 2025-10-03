@@ -1,7 +1,7 @@
 import ProfilesForm from "../components/profilesform.jsx";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { ProfileContext } from "../contexts/profilescontext.jsx";
+import { ProfilesContext } from "./contexts/profilescontext.jsx";
 
 const AddProfiles = () => {
     const { addProfiles } = useContext(ProfilesContext);
