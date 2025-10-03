@@ -1,4 +1,4 @@
-.profileForm {
+.profilesForm {
     max-width: 500px;
     margin: 0 auto;
     padding: 20px;
@@ -7,29 +7,29 @@
     background: #fff;
 }
 
-.profileForm--dark {
+.profilesForm--dark {
     background: #2a2a2a;
     color: #eee;
 }
 
-.profileForm__heading {
+.profilesForm__heading {
     margin-bottom: 1rem;
     text-align: center;
 }
 
-.profileForm__field {
+.profilesForm__field {
     margin-bottom: 1rem;
     text-align: center;
 }
 
-.profileForm__label {
+.profilesForm__label {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: bold;
 }
 
-.profileForm__input,
-.profileForm__textarea {
+.profilesForm__input,
+.profilesForm__textarea {
     width: 100%;
     padding: 0.5rem;
     border: 1px solid #ccc;
@@ -37,7 +37,7 @@
     font-size: 1rem;
 }
 
-.profileForm button {
+.profilesForm button {
     width: 100%;
     padding: 0.75rem;
     background-color: #007bff;
@@ -48,17 +48,17 @@
     cursor: pointer;
 }
 
-.profileForm__button:hover {
+.profilesForm__button:hover {
     background-color: #0056b3;
 }
 
-.profileForm__successMessage {
+.profilesForm__successMessage {
     color: green;
     text-align: center;
     margin-top: 1rem;
 }
 
-.profileForm__errorMessage {
+.profilesForm__errorMessage {
     color: red;
     text-align: center;
     margin-top: 1rem;
