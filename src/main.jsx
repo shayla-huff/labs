@@ -1,9 +1,9 @@
 import { createRoot } from 'react-dom/client';
 
 import { StrictMode } from 'react';
-import { ModeProvider } from './context/modecontext';
+import { ModeProvider } from './contexts/modecontext';
 import { HashRouter } from 'react-router-dom';
-import { ProfileProvider } from './context/profilecontext';
+import { ProfileProvider } from './contexts/profilecontext';
 import './css/index.css';
 import App from './App';
 
