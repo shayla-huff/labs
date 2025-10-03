@@ -11,11 +11,6 @@ import FetchedProfiles from "./pages/fetchedprofiles";
 import ProfileDetails from "./components/profiledetails";
 
 const App = () => {
-    const [cards, setCards] = useState([]); //keeps track of profiles added
-    const [darkMode, setDarkMode] = useState(false); // state for dark mode
-
-    const toggleMode = () => setDarkMode(!darkMode);
-
     return (
         <>
             <Header darkmode={darkMode} toggleMode={toggleMode} />
@@ -29,20 +24,14 @@ const App = () => {
             </nav>
 
             <Routes>
-                <Route 
-                    path="/"
-                    element={<Home cards={cards} setCards={setCards} darkmode={darkMode} />} />
-                <Route 
-                    path="/addprofile" 
-                    element={<AddProfile setCards={setCards} darkmode={darkMode} />} />
+                <Route path="/" element={<Home />} />
+                <Route path="/addprofile" element={<AddProfile />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/otherprofiles" element={<OtherProfiles />} />
                 <Route path="/fetchedprofiles" element={<FetchedProfiles />}>
                     <Route path="profile/:id" element={<ProfileDetails />} /> 
                 </Route>
-
                 <Route path="*" element={<NotFound />} />
-
             </Routes>
         </>
     );

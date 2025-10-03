@@ -1,7 +1,11 @@
 import styles from '../css/navbar.module.css';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { ModeContext } from '../context/modecontext'; 
 
-const Header = ({ toggleMode, darkMode }) => {
+const Header = () => {
+    const { darkMode, toggleMode } = useContext(ModeContext);
+    
     return (
         <header className={darkMode ? styles.darkHeader : styles.lightHeader}>
             <nav className={styles.navbar}>

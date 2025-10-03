@@ -1,12 +1,14 @@
 import ProfileForm from "../components/profileform.jsx";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { ProfileContext } from "../context/profilecontext.jsx";
 
-const AddProfile = ({ setCards }) => {
+const AddProfile = () => {
+    const { addProfile } = useContext(ProfileContext);
     const navigate = useNavigate();
 
     const handleAddProfile = (profile) => {
-        // add the new profile to the cards state
-        setCards(prev => [...prev, profile]);
+        addProfile(profile);
         // navigate back to the home page
         navigate("/");
     };

@@ -1,13 +1,21 @@
-import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+
+import { StrictMode } from 'react';
+import { ModeProvider } from './context/modecontext';
 import { HashRouter } from 'react-router-dom';
+import { ProfileProvider } from './context/profilecontext';
 import './css/index.css';
 import App from './App';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <HashRouter>
-      <App />
-    </HashRouter>
+    <ModeProvider>
+      <ProfileProvider>
+        <HashRouter>
+          <App />
+        </HashRouter>
+      </ProfileProvider>
+    </ModeProvider>
   </StrictMode>
 );
+
