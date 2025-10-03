@@ -39,7 +39,7 @@ export const fetchAllProfiles = async () => {
     }
 };
 
-export const fetchProfileById = async (id) => {
+export const fetchProfilesById = async (id) => {
     try {
         const response = await fetch('https://web.ics.purdue.edu/~zong6/profile-app/fetch-data-with-id.php?id=${id}');
         if (!response.ok) throw new Error('Failed to fetch profile by ID');

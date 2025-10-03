@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom"; 
 import { fetchAllProfiles } from "../components/fetchdata.jsx";
-import styles from "../css/profile.module.css";
+import styles from "../css/profiles.module.css";
 
 const FetchedProfiles = () => {
     const [profiles, setProfiles] = useState([]);
@@ -43,20 +43,20 @@ const FetchedProfiles = () => {
     if (error) return <p style={{ color: "red" }}>{error}</p>;
 
     return (
-        <div className={styles.profileList}>
-            <h2 className={styles.profileForm__heading}>Fetched Profiles</h2>
-            <div className={styles.profileGrid}>
-                {profiles.map((profile) => (
-                    <div key={profile.id} className={styles.profileCard}>
+        <div className={styles.profilesList}>
+            <h2 className={styles.profilesForm__heading}>Fetched Profiles</h2>
+            <div className={styles.profilesGrid}>
+                {profiles.map((profiles) => (
+                    <div key={profiles.id} className={styles.profilesCard}>
                         <img 
-                            src={profile.image} 
-                            alt={profile.title} 
-                            className={styles.profileImage}
+                            src={profiles.image} 
+                            alt={profiles.title} 
+                            className={styles.profilesImage}
                         />
-                        <h3 className={styles.profileTitle}>{profile.title}</h3>
-                        <p className={styles.profileDescription}>{profile.description}</p>
+                        <h3 className={styles.profilesTitle}>{profiles.title}</h3>
+                        <p className={styles.profilesDescription}>{profiles.description}</p>
 
-                        <Link to={`profile/${profile.id}`}>View Details</Link>
+                        <Link to={`profiles/${profiles.id}`}>View Details</Link>
                     </div>
                 ))}
             </div>

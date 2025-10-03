@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
-import { ModeContext } from '../contexts/ModeContext';
-import { ProfileContext } from '../contexts/ProfileContext';
+import { ModeContext } from './contexts/ModeContext';
+import { ProfilesContext } from './contexts/ProfilesContext';
 import { fetchTitles, fetchProfiles } from "../components/fetchdata.jsx";
 import Intro, { getText } from '../components/intro';
 import Cards from '../components/cards.jsx';
@@ -8,7 +8,7 @@ import Filters from '../components/filters.jsx';
 
 const Home = () => {
     const { darkMode } = useContext(ModeContext);
-    const { profiles, setProfiles } = useContext(ProfileContext);
+    const { profiles, setProfiles } = useContext(ProfilesContext);
 
     const [search, setSearch] = useState('');
     const [filterTitle, setFilterTitle] = useState('');

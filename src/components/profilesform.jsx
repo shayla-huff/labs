@@ -1,7 +1,7 @@
 import { useState } from "react";
-import styles from '../css/profile.module.css';
+import styles from '../css/profiles.module.css';
 
-const ProfileForm = ({ onAddProfile, darkMode }) => {
+const ProfilesForm = ({ onAddProfiles, darkMode }) => {
     const [formData, setFormData] = useState({
         name: "", email: "", title: "", bio: "", image: "",
     });
@@ -38,7 +38,7 @@ const ProfileForm = ({ onAddProfile, darkMode }) => {
             return;
         }
 
-        onAddProfile({
+        onAddProfiles({
             name: formData.name,
             email: formData.email,
             title: formData.title,
@@ -54,17 +54,17 @@ const ProfileForm = ({ onAddProfile, darkMode }) => {
     return (
         <form 
             onSubmit={handleSubmit} 
-            className={`${styles.profileForm} ${darkMode ? styles["profileForm--dark"] : ""}`}
+            className={`${styles.profilesForm} ${darkMode ? styles["profilesForm--dark"] : ""}`}
         >
-            <h2 className={styles.profileForm__heading}>Add a New Profile</h2>
-            {success && <p className={styles.profileForm__successMessage}>{success}</p>}
+            <h2 className={styles.profilesForm__heading}>Add a New Profile</h2>
+            {success && <p className={styles.profilesForm__successMessage}>{success}</p>}
 
             {["name","email","title","bio","image"].map(field => (
-                <div key={field} className={styles.profileForm__field}>
-                    <label className={styles.profileForm__label}>{field.charAt(0).toUpperCase() + field.slice(1)}:</label>
+                <div key={field} className={styles.profilesForm__field}>
+                    <label className={styles.profilesForm__label}>{field.charAt(0).toUpperCase() + field.slice(1)}:</label>
                     {field === "bio" ? (
                         <textarea
-                            className={styles.profileForm__textarea}
+                            className={styles.profilesForm__textarea}
                             name={field}
                             value={formData[field]}
                             onChange={handleChange}
@@ -72,25 +72,25 @@ const ProfileForm = ({ onAddProfile, darkMode }) => {
                         />
                     ) : (
                         <input
-                            className={styles.profileForm__input}
+                            className={styles.profilesForm__input}
                             name={field}
                             value={formData[field]}
                             onChange={handleChange}
                             onBlur={(e) => validateField(field, e.target.value)}
                         />
                     )}
-                    {errors[field] && <span className={styles.profileForm__errorMessage}>{errors[field]}</span>}
+                    {errors[field] && <span className={styles.profilesForm__errorMessage}>{errors[field]}</span>}
                 </div>
             ))}
 
-            <button type="submit" className={styles.profileForm__button}>
+            <button type="submit" className={styles.profilesForm__button}>
                 Add Profile
             </button>
         </form>
     );
 };
 
-export default ProfileForm;
+export default ProfilesForm;
 
 
 
