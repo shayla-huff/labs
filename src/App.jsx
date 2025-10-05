@@ -1,5 +1,4 @@
 import { Routes, Route, Link } from "react-router-dom"; 
-import { useState } from "react";
 import Home from "./pages/home";
 import AddProfiles from "./pages/addprofiles";
 import About from "./pages/about";
@@ -7,15 +6,16 @@ import OtherProfiles from "./pages/otherprof";
 import NotFound from "./pages/notfound";
 import Header from "./components/header";
 import FetchedProfiles from "./pages/fetchedprofiles";
-import ProfilesDetails from "./components/profilesdetails";
-import { ProfilesProvider } from "./contexts/ProfilesContext";
-import { ModeProvider } from "./contexts/ModeContext";
+import ProfileDetails from "./components/profilesdetails";
+
+import { ProfilesProvider } from "../contexts/profilescontext";
+import { ModeProvider } from "../contexts/modecontext";
 
 const App = () => {
     return (
         <ModeProvider>
             <ProfilesProvider>
-                <Header/>
+                <Header />   
 
                 <nav>
                     <Link to="/">Home</Link> |{" "}
@@ -41,4 +41,5 @@ const App = () => {
 };
 
 export default App;
+
 
