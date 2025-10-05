@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchProfilesById } from "./fetchdata.jsx";
+import { fetchProfilesById } from "./FetchData.jsx";
 import styles from "../css/profiles.module.css";
 
 const ProfilesDetails = () => {

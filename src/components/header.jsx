@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ModeContext } from "./contexts/modecontext";
+import { ModeContext } from "../contexts/ModeContext";
 
 const Header = () => {
   const { darkMode, toggleMode } = useContext(ModeContext);

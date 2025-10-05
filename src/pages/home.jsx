@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from 'react';
-import { ModeContext } from '../contexts/ModeContext';
-import { ProfilesContext } from '../contexts/ProfilesContext';
-import { fetchTitles, fetchProfiles } from "../components/fetchdata.jsx";
-import Intro, { getText } from '../components/intro';
-import Cards from '../components/cards.jsx';
-import Filters from '../components/filters.jsx';
+import { ModeContext } from '../contexts/ModeContext.jsx';
+import { ProfilesContext } from '../contexts/ProfilesContext.jsx';
+import { fetchTitles, fetchProfiles } from "../components/FetchData.jsx";
+import Intro, { getText } from '../components/Intro.jsx';
+import Cards from '../components/Cards.jsx';
+import Filters from '../components/Filters.jsx';
 
 const Home = () => {
     const { darkMode } = useContext(ModeContext);

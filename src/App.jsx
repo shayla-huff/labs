@@ -1,15 +1,15 @@
 import { Routes, Route, Link } from "react-router-dom"; 
-import Home from "./pages/home";
-import AddProfiles from "./pages/addprofiles";
-import About from "./pages/about";
-import OtherProfiles from "./pages/otherprof";
-import NotFound from "./pages/notfound";
-import Header from "./components/header";
-import FetchedProfiles from "./pages/fetchedprofiles";
-import ProfileDetails from "./components/profilesdetails";
+import Home from "./pages/Home.jsx";
+import AddProfiles from "./pages/AddProfiles.jsx";
+import About from "./pages/About.jsx";
+import OtherProfiles from "./pages/OtherProf.jsx";
+import NotFound from "./pages/NotFound.jsx";
+import Header from "./components/Header.jsx";
+import FetchedProfiles from "./pages/FetchedProfiles.jsx";
+import ProfileDetails from "./components/ProfilesDetails.jsx";
 
-import { ProfilesProvider } from "../contexts/profilescontext";
-import { ModeProvider } from "../contexts/modecontext";
+import { ProfilesProvider } from "./contexts/ProfilesContext";
+import { ModeProvider } from "./contexts/ModeContext";
 
 const App = () => {
     return (

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom"; 
-import { fetchAllProfiles } from "../components/fetchdata.jsx";
+import { fetchAllProfiles } from "../components/FetchData.jsx";
 import styles from "../css/profiles.module.css";
 
 const FetchedProfiles = () => {
