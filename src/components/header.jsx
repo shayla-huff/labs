@@ -6,21 +6,14 @@ import { ModeContext } from '../contexts/ModeContext';
 const Header = () => {
     const { darkMode, toggleMode } = useContext(ModeContext);
 
-    return (
-        <header className={darkMode ? styles.darkHeader : styles.lightHeader}>
-            <nav className={styles.navbar}>
-                <ul>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/about">About</Link></li>
-                    <li><Link to="/otherprofiles">Profiles</Link></li>
-                </ul>
-            </nav>
-
-            <button className={styles.modeButton} onClick={toggleMode}>
-                {darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-            </button>
-        </header>
-    );
+  return (
+    <header className={darkMode ? "header-dark" : "header-light"}>
+      <h1>My Profiles App</h1>
+      <button onClick={toggleMode}>
+        {darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+      </button>
+    </header>
+  );
 };
 
 export default Header;
