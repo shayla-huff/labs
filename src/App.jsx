@@ -15,7 +15,7 @@ const App = () => {
     return (
         <ModeProvider>
             <ProfilesProvider>
-                <Header darkmode={darkMode} toggleMode={toggleMode} />
+                <Header/>
 
                 <nav>
                     <Link to="/">Home</Link> |{" "}
