@@ -22,7 +22,7 @@ const App = () => {
                     <Link to="/addprofiles">Add Profile</Link> |{" "}
                     <Link to="/about">About</Link> |{" "}
                     <Link to="/otherprofiles">Other Profiles</Link> |{" "}
-                    <Link to="/fetchedprofiles">Fetched Profiles</Link> |{" "}
+                    <Link to="/fetchedprofiles">Fetched Profiles</Link>
                 </nav>
 
                 <Routes>
