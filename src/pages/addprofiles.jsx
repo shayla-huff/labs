@@ -1,4 +1,4 @@
-import ProfilesForm from "../components/profilesform.jsx";
+import ProfilesForm from "../components/profilesform";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { ProfilesContext } from "../contexts/ProfilesContext";

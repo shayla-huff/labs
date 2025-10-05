@@ -8,6 +8,8 @@ import NotFound from "./pages/notfound";
 import Header from "./components/header";
 import FetchedProfiles from "./pages/fetchedprofiles";
 import ProfilesDetails from "./components/profilesdetails";
+import { ProfilesProvider } from "./contexts/ProfilesContext";
+import { ModeProvider } from "./contexts/ModeContext";
 
 const App = () => {
     return (
