@@ -1,14 +1,12 @@
 import { useContext } from "react";
 import { ModeContext } from "../contexts/ModeContext";
 
-const Header = () => {
-  const { darkMode, toggleMode } = useContext(ModeContext);
-
+const Header = ({ darkMode, toggleMode }) => {
   return (
-    <header className={darkMode ? "header-dark" : "header-light"}>
-      <h1>My Profiles App</h1>
+    <header>
+      <h1>My App</h1>
       <button onClick={toggleMode}>
-        {darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+        Switch to {darkMode ? "Light" : "Dark"} Mode
       </button>
     </header>
   );
