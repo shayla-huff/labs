@@ -1,7 +1,7 @@
 import styles from '../css/navbar.module.css';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
-import { ModeContext } from '../contexts/modecontext'; 
+import { ModeContext } from '../contexts/ModeContext'; 
 
 const Header = () => {
     const { darkMode, toggleMode } = useContext(ModeContext);

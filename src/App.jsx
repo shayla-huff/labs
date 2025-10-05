@@ -6,10 +6,8 @@ import About from "./pages/about";
 import OtherProfiles from "./pages/otherprof";
 import NotFound from "./pages/notfound";
 import Header from "./components/header";
-
 import FetchedProfiles from "./pages/fetchedprofiles";
 import ProfilesDetails from "./components/profilesdetails";
-import { ProfilesProvider } from "./contexts/profilescontext";
 
 const App = () => {
     return (
