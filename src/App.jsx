@@ -1,4 +1,6 @@
 import { Routes, Route, Link } from "react-router-dom"; 
+import { useContext } from "react";
+
 import Home from "./pages/Home.jsx";
 import AddProfiles from "./pages/AddProfiles.jsx";
 import About from "./pages/About.jsx";
@@ -6,12 +8,11 @@ import OtherProfiles from "./pages/OtherProf.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import Header from "./components/Header.jsx";
 import FetchedProfiles from "./pages/FetchedProfiles.jsx";
-import ProfileDetails from "./components/ProfilesDetails.jsx";
+import ProfilesDetails from "./components/ProfilesDetails.jsx";
 
-import { ProfilesProvider } from "./contexts/ProfilesContext";
-import { ModeProvider, ModeContext } from "./contexts/ModeContext";
+import { ModeContext } from "./contexts/ModeContext";
 
-const AppContent = () => {
+const App = () => {
   const { darkMode, toggleMode } = useContext(ModeContext);
 
   return (
@@ -37,16 +38,6 @@ const AppContent = () => {
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
-  );
-};
-
-const App = () => {
-  return (
-    <ModeProvider>
-      <ProfilesProvider>
-        <AppContent />
-      </ProfilesProvider>
-    </ModeProvider>
   );
 };
 
