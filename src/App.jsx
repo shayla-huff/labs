@@ -27,16 +27,16 @@ const App = () => {
         <Link to="/fetchedprofiles">Fetched Profiles</Link>
       </nav>
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/addprofiles" element={<AddProfiles />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/otherprofiles" element={<OtherProfiles />} />
-        <Route path="/fetchedprofiles" element={<FetchedProfiles />}>
-          <Route path="profiles/:id" element={<ProfilesDetails />} /> 
-        </Route>
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/addprofiles" element={<AddProfiles />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/otherprofiles" element={<OtherProfiles />} />
+            <Route path="/fetchedprofiles" element={<FetchedProfiles />}>
+                <Route path="profiles/:id" element={<ProfilesDetails />} /> 
+            </Route>
+            <Route path="*" element={<NotFound />} />
+        </Routes>
     </>
   );
 };
