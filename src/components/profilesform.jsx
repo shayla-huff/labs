@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useLayoutEffect } from "react";
 import styles from '../css/profiles.module.css';
 
 const ProfilesForm = ({ onAddProfiles, darkMode }) => {
@@ -7,6 +7,25 @@ const ProfilesForm = ({ onAddProfiles, darkMode }) => {
     });
     const [errors, setErrors] = useState({});
     const [success, setSuccess] = useState("");
+
+    // useRef to focus the name input when form loads
+    const nameInputRef = useRef(null);
+
+    // useRef + useLayoutEffect to measure form width
+    const formRef = useRef(null);
+    const [formWidth, setFormWidth] = useState(0);
+
+    useLayoutEffect(() => {
+        if (formRef.current) {
+            setFormWidth(formRef.current.offsetWidth);
+        }
+    }, []);
+
+    useLayoutEffect(() => {
+        if (nameInputRef.current) {
+            nameInputRef.current.focus();
+        }
+    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -53,6 +72,7 @@ const ProfilesForm = ({ onAddProfiles, darkMode }) => {
 
     return (
         <form 
+            ref={formRef}
             onSubmit={handleSubmit} 
             className={`${styles.profilesForm} ${darkMode ? styles["profilesForm--dark"] : ""}`}
         >
@@ -72,6 +92,7 @@ const ProfilesForm = ({ onAddProfiles, darkMode }) => {
                         />
                     ) : (
                         <input
+                            ref={field === "name" ? nameInputRef : null}
                             className={styles.profilesForm__input}
                             name={field}
                             value={formData[field]}

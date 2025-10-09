@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useLayoutEffect } from "react";
 import { Link, Outlet } from "react-router-dom"; 
 import { fetchAllProfiles } from "../components/FetchData.jsx";
 import styles from "../css/profiles.module.css";
@@ -7,6 +7,14 @@ const FetchedProfiles = () => {
     const [profiles, setProfiles] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+    const listRef = useRef(null);
+    const [gridWidth, setGridWidth] = useState(0);
+
+    useLayoutEffect(() => {
+        if (listRef.current) {
+            setGridWidth(listRef.current.offsetWidth);
+        }
+    }, []);
 
     useEffect(() => {
         const fetchProfiles = async () => {
@@ -45,7 +53,7 @@ const FetchedProfiles = () => {
     return (
         <div className={styles.profilesList}>
             <h2 className={styles.profilesForm__heading}>Fetched Profiles</h2>
-            <div className={styles.profilesGrid}>
+            <div ref={gridRef} className={styles.profilesGrid}>
                 {profiles.map((profiles) => (
                     <div key={profiles.id} className={styles.profilesCard}>
                         <img 
