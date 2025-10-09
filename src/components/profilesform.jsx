@@ -1,7 +1,9 @@
-import { useState, useRef, useLayoutEffect } from "react";
+import { useState, useRef, useLayoutEffect, useContext } from "react";
+import { ProfilesContext } from '../contexts/ProfilesContext';
 import styles from '../css/profiles.module.css';
 
-const ProfilesForm = ({ onAddProfiles, darkMode }) => {
+const ProfilesForm = ({ darkMode }) => {
+    const { addProfiles } = useContext(ProfilesContext);
     const [formData, setFormData] = useState({
         name: "", email: "", title: "", bio: "", image: "",
     });
@@ -16,15 +18,8 @@ const ProfilesForm = ({ onAddProfiles, darkMode }) => {
     const [formWidth, setFormWidth] = useState(0);
 
     useLayoutEffect(() => {
-        if (formRef.current) {
-            setFormWidth(formRef.current.offsetWidth);
-        }
-    }, []);
-
-    useLayoutEffect(() => {
-        if (nameInputRef.current) {
-            nameInputRef.current.focus();
-        }
+        if (nameInputRef.current) nameInputRef.current.focus();
+        if (formRef.current) setFormWidth(formRef.current.offsetWidth);
     }, []);
 
     const handleChange = (e) => {
@@ -57,13 +52,7 @@ const ProfilesForm = ({ onAddProfiles, darkMode }) => {
             return;
         }
 
-        onAddProfiles({
-            name: formData.name,
-            email: formData.email,
-            title: formData.title,
-            bio: formData.bio,
-            image: formData.image,
-        });
+        addProfiles([formData]);
 
         setFormData({ name: "", email: "", title: "", bio: "", image: "" });
         setErrors({});
