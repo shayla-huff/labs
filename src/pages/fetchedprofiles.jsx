@@ -1,8 +1,11 @@
-import { useEffect, useState, useRef, useLayoutEffect } from "react";
+import { useEffect, useState, useRef, useLayoutEffect, useContext, lazy, Suspense } from "react";
 import { Link, Outlet } from "react-router-dom"; 
 import { ProfilesContext } from '../contexts/ProfilesContext';
-import { fetchAllProfiles } from "../components/FetchData.jsx";
+import { fetchAllProfiles } from "../components/FetchData";
+import ProfilesCard from "../components/ProfilesCard";
 import styles from "../css/profiles.module.css";
+
+const ProfilesCard = lazy(() => import("../components/ProfilesCard"));
 
 const FetchedProfiles = () => {
     const { profiles, addProfiles } = useContext(ProfilesContext);
@@ -21,7 +24,7 @@ const FetchedProfiles = () => {
                 const data = await fetchAllProfiles();
                 addProfiles(data);
             } catch (err) {
-                console.error(err);
+                console.error("Error fetching profiles:", err);
             } 
         };
         getProfiles();
@@ -30,22 +33,14 @@ const FetchedProfiles = () => {
     return (
         <div className={styles.profilesList}>
             <h2 className={styles.profilesForm__heading}>Fetched Profiles</h2>
-            <div ref={gridRef} className={styles.profilesGrid}>
-                {profiles.map((profiles) => (
-                    <div key={profiles.id} className={styles.profilesCard}>
-                        <img 
-                            src={profiles.image} 
-                            alt={profiles.title} 
-                            className={styles.profilesImage}
-                        />
-                        <h3 className={styles.profilesTitle}>{profiles.title}</h3>
-                        <p className={styles.profilesDescription}>{profiles.description}</p>
 
-                        <Link to={`profiles/${profiles.id}`}>View Details</Link>
-                    </div>
-                ))}
-            </div>
-            <Outlet />
+            <Suspense fallback={<div>Loading profiles...</div>}>
+                <div ref={listRef} className={styles.profilesGrid}>
+                    {profiles.map((profile) => (
+                        <ProfilesCard key={profile.id} profile={profile} />
+                    ))}
+                </div>
+            </Suspense>
         </div>
     );
 };

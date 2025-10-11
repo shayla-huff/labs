@@ -1,4 +1,4 @@
-import { useState, useRef, useLayoutEffect, useContext } from "react";
+import { useState, useRef, useLayoutEffect, useContext, useCallback } from "react";
 import { ProfilesContext } from '../contexts/ProfilesContext';
 import styles from '../css/profiles.module.css';
 
@@ -22,42 +22,44 @@ const ProfilesForm = ({ darkMode }) => {
         if (formRef.current) setFormWidth(formRef.current.offsetWidth);
     }, []);
 
-    const handleChange = (e) => {
+    const handleChange = useCallback((e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
         validateField(name, value);
-    };
+    }, []);
 
-    const validateField = (name, value) => {
+    const validateField = useCallback((name, value) => {
         let errorMsg = "";
         if (!value.trim()) errorMsg = `${name} is required`;
         else if (name === "email" && !/\S+@\S+\.\S+/.test(value)) errorMsg = "Please enter a valid email";
         setErrors(prev => ({ ...prev, [name]: errorMsg }));
-    };
+    }, []);
 
-    const validateForm = () => {
+    // const validateForm = () => {
+    //     const newErrors = {};
+    //     Object.keys(formData).forEach(field => {
+    //         if (!formData[field].trim()) newErrors[field] = `${field} is required`;  
+    //     });
+    //     return newErrors;
+    // };
+
+    const handleSubmit = useCallback((e) => {
+        e.preventDefault();
         const newErrors = {};
         Object.keys(formData).forEach(field => {
-            if (!formData[field].trim()) newErrors[field] = `${field} is required`;  
+            if (!formData[field].trim()) newErrors[field] = `${field} is required`;
         });
-        return newErrors;
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        const newErrors = validateForm();
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
             return;
         }
 
-        addProfiles([formData]);
+        addProfiles([formData]); // Add to context
 
         setFormData({ name: "", email: "", title: "", bio: "", image: "" });
         setErrors({});
         setSuccess("Profile added successfully!");
-    };
+    }, [formData, addProfiles]);
 
     return (
         <form 

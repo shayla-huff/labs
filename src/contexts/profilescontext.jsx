@@ -1,4 +1,4 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useReducer, useCallback, useMemo } from 'react';
 
 export const ProfilesContext = createContext();
 
@@ -16,16 +16,20 @@ const profilesReducer = (state, action) => {
 export const ProfilesProvider = ({ children }) => {
   const [profiles, dispatch] = useReducer(profilesReducer, []);
 
-  const addProfiles = (profiles) => {
-    dispatch({ type: "ADD_PROFILES", payload: profiles });
-  };
+  const addProfiles = useCallback ((newProfiles) => {
+    dispatch({ type: "ADD_PROFILES", payload: newProfiles });
+  }, []);
 
-  const removeProfiles = (id) => {
+  const removeProfiles = useCallback((id) => {
     dispatch({ type: "REMOVE_PROFILES", payload: id });
-  };
+  }, []);
+
+  const value = useMemo(() => ({ profiles, addProfiles, removeProfiles }),
+    [profiles, addProfiles, removeProfiles]
+  );
 
   return (
-    <ProfilesContext.Provider value={{ profiles, addProfiles, removeProfiles }}>
+    <ProfilesContext.Provider value={value}>
         {children}
     </ProfilesContext.Provider>
   );
