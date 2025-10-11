@@ -2,7 +2,6 @@ import { useEffect, useState, useRef, useLayoutEffect, useContext, lazy, Suspens
 import { Link, Outlet } from "react-router-dom"; 
 import { ProfilesContext } from '../contexts/ProfilesContext';
 import { fetchAllProfiles } from "../components/FetchData";
-import ProfilesCard from "../components/ProfilesCard";
 import styles from "../css/profiles.module.css";
 
 const ProfilesCard = lazy(() => import("../components/ProfilesCard"));
