@@ -1,65 +1,28 @@
 import { useState, useRef, useLayoutEffect, useContext, useCallback } from "react";
 import { ProfilesContext } from '../contexts/ProfilesContext';
+import { useFormHandler } from "../customhooks/useFormHandler"
 import styles from '../css/profiles.module.css';
 
 const ProfilesForm = ({ darkMode }) => {
     const { addProfiles } = useContext(ProfilesContext);
-    const [formData, setFormData] = useState({
-        name: "", email: "", title: "", bio: "", image: "",
-    });
-    const [errors, setErrors] = useState({});
-    const [success, setSuccess] = useState("");
-
-    // useRef to focus the name input when form loads
     const nameInputRef = useRef(null);
-
-    // useRef + useLayoutEffect to measure form width
     const formRef = useRef(null);
-    const [formWidth, setFormWidth] = useState(0);
+
+    const { 
+        formData, 
+        errors, 
+        success, 
+        handleChange, 
+        handleSubmit, 
+        validateField 
+    } = useFormHandler(
+        { name: "", email: "", title: "", bio: "", image: "" },
+        addProfiles
+    );
 
     useLayoutEffect(() => {
         if (nameInputRef.current) nameInputRef.current.focus();
-        if (formRef.current) setFormWidth(formRef.current.offsetWidth);
     }, []);
-
-    const handleChange = useCallback((e) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
-        validateField(name, value);
-    }, []);
-
-    const validateField = useCallback((name, value) => {
-        let errorMsg = "";
-        if (!value.trim()) errorMsg = `${name} is required`;
-        else if (name === "email" && !/\S+@\S+\.\S+/.test(value)) errorMsg = "Please enter a valid email";
-        setErrors(prev => ({ ...prev, [name]: errorMsg }));
-    }, []);
-
-    // const validateForm = () => {
-    //     const newErrors = {};
-    //     Object.keys(formData).forEach(field => {
-    //         if (!formData[field].trim()) newErrors[field] = `${field} is required`;  
-    //     });
-    //     return newErrors;
-    // };
-
-    const handleSubmit = useCallback((e) => {
-        e.preventDefault();
-        const newErrors = {};
-        Object.keys(formData).forEach(field => {
-            if (!formData[field].trim()) newErrors[field] = `${field} is required`;
-        });
-        if (Object.keys(newErrors).length > 0) {
-            setErrors(newErrors);
-            return;
-        }
-
-        addProfiles([formData]); // Add to context
-
-        setFormData({ name: "", email: "", title: "", bio: "", image: "" });
-        setErrors({});
-        setSuccess("Profile added successfully!");
-    }, [formData, addProfiles]);
 
     return (
         <form 
